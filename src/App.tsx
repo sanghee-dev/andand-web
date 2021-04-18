@@ -1,24 +1,19 @@
 import * as React from "react";
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./screens/Home";
+import Login from "./screens/Login";
+import NotFound from "./screens/NotFound";
 
 const App: React.FC = () => {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
 
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <div>Home</div>
+          {isLoggedIn ? <Home /> : <Login />}
         </Route>
-        <Route path="/potato">
-          <div>potato</div>
-        </Route>
-        <Redirect from="*" to="/" />
+        <Route path="/*" component={NotFound} />
       </Switch>
     </Router>
   );
