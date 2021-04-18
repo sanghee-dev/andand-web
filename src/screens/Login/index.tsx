@@ -1,12 +1,10 @@
-type LoginProps = {
-  setIsLoggedIn: (isLoggedIn: boolean) => void;
-};
+import { isLoggedInVar } from "../../apollo";
 
-const Login = ({ setIsLoggedIn }: LoginProps) => {
+const Login = () => {
   return (
     <div>
       <h1>Login</h1>
-      <button onClick={() => setIsLoggedIn(true)}>Log in now!</button>
+      <button onClick={() => isLoggedInVar(true)}>Log in now!</button>
     </div>
   );
 };
