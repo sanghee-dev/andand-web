@@ -2,7 +2,7 @@ import * as React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { useReactiveVar } from "@apollo/client";
 import styled, { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "./styles/styles";
+import { GlobalStyles, lightTheme, darkTheme } from "styles/styles";
 import Home from "screens/Home";
 import Login from "screens/Login";
 import NotFound from "screens/NotFound";
@@ -25,7 +25,10 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Container floating={true}>Andand</Container>
+      <GlobalStyles />
+      <Container floating={true}>
+        <h1>Andand</h1>
+      </Container>
       <Router>
         <Switch>
           <Route path="/" exact>

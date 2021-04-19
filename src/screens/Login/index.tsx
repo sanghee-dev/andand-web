@@ -15,7 +15,7 @@ const Login = () => {
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Title>Login</Title>
       <button onClick={() => darkModeVar(!darkMode)}>
-        {darkMode ? "To light" : "To dark"}
+        {darkMode ? "Light Mode" : "Dark Mode"}
       </button>
     </ThemeProvider>
   );
