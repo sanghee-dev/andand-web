@@ -1,11 +1,23 @@
-import { isLoggedInVar } from "../../apollo";
+import styled, { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "../../styles";
+import { useReactiveVar } from "@apollo/client";
+import { darkModeVar } from "../../apollo";
+
+const Title = styled.h1`
+  background-color: ${(props) => props.theme.bgColor};
+  color: ${(props) => props.theme.fontColor};
+`;
 
 const Login = () => {
+  const darkMode = useReactiveVar(darkModeVar);
+
   return (
-    <div>
-      <h1>Login</h1>
-      <button onClick={() => isLoggedInVar(true)}>Log in now!</button>
-    </div>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <Title>Login</Title>
+      <button onClick={() => darkModeVar(!darkMode)}>
+        {darkMode ? "To light" : "To dark"}
+      </button>
+    </ThemeProvider>
   );
 };
 
