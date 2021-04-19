@@ -7,7 +7,7 @@ export const lightTheme: DefaultTheme = {
 };
 
 export const darkTheme: DefaultTheme = {
-  bgColor: "gray",
+  bgColor: "blue",
   fontColor: "white",
 };
 
@@ -20,7 +20,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   body{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: ${(props) => props.theme.bgColor}
+    background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.fontColor};
   }
   a{
@@ -29,6 +29,7 @@ export const GlobalStyles = createGlobalStyle`
   }
   input{
     all:unset;
+    border: 1px solid ${(props) => props.theme.fontColor};
   }
   h1 {
     font-size: 24px;

@@ -3,11 +3,11 @@ import Home from "screens/Home";
 import Login from "screens/Login";
 import NotFound from "screens/NotFound";
 
-interface Props {
+interface IProps {
   isLoggedIn: boolean;
 }
 
-const AppRouter = ({ isLoggedIn }: Props) => {
+const AppRouter = ({ isLoggedIn }: IProps) => {
   return (
     <Router>
       <Switch>
