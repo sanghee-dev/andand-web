@@ -2,11 +2,11 @@ import * as React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { useReactiveVar } from "@apollo/client";
 import styled, { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "./styles";
-import Home from "./screens/Home";
-import Login from "./screens/Login";
-import NotFound from "./screens/NotFound";
-import { isLoggedInVar, darkModeVar } from "./apollo";
+import { lightTheme, darkTheme } from "./styles/styles";
+import Home from "screens/Home";
+import Login from "screens/Login";
+import NotFound from "screens/NotFound";
+import { isLoggedInVar, darkModeVar } from "apollo";
 
 interface IContainerProps {
   floating: boolean;
