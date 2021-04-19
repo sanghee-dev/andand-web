@@ -1,39 +1,35 @@
-import { DefaultTheme, createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { DefaultTheme } from "styled-components";
 
 export const lightTheme: DefaultTheme = {
-  bgColor: "white",
-  fontColor: "blue",
+  accent: "rgb(0,149,246)",
+  accentLight: "rgb(145, 211, 255)",
+  accentDark: "rgb(0, 118, 197)",
+  backgroundColor: "rgb(250,250,250)",
+  facebookColor: "rgb(56,81,133)",
+
+  fontColor: "black",
+  fontHeavy: "600",
+
+  borderColor: "rgb(220,220,220)",
+  border: "1px solid rgb(220,220,220)",
+  borderDark: "1px solid rgb(180,180,180)",
+
+  transition: "all 0.1s ease-in-out",
 };
 
 export const darkTheme: DefaultTheme = {
-  bgColor: "blue",
-  fontColor: "white",
-};
+  accent: "rgb(0,149,246)",
+  accentLight: "rgb(145, 211, 255)",
+  accentDark: "rgb(0, 118, 197)",
+  backgroundColor: "rgb(250,250,250)",
+  facebookColor: "rgb(56,81,133)",
 
-export const GlobalStyles = createGlobalStyle`
-  ${reset};
-  *{
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-  }
-  body{
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: ${(props) => props.theme.bgColor};
-    color: ${(props) => props.theme.fontColor};
-  }
-  a{
-    text-decoration: none;
-    color: inherit;
-  }
-  input{
-    all:unset;
-    border: 1px solid ${(props) => props.theme.fontColor};
-  }
-  h1 {
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 1.1;
-  }
-`;
+  fontColor: "black",
+  fontHeavy: "600",
+
+  borderColor: "rgb(220,220,220)",
+  border: "1px solid rgb(220,220,220)",
+  borderDark: "1px solid rgb(180,180,180)",
+
+  transition: "all 0.1s ease-in-out",
+};

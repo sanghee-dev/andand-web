@@ -4,7 +4,7 @@ import { useReactiveVar } from "@apollo/client";
 import { darkModeVar } from "apollo";
 
 const Title = styled.h1`
-  background-color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.fontColor};
 `;
 
