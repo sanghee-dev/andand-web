@@ -1,9 +1,7 @@
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import routes from "router/routes";
-import { useReactiveVar } from "@apollo/client";
-import { darkModeVar } from "apollo";
-import { lightTheme, darkTheme } from "styles/styles";
 import { Container, MainBox } from "components/shared";
+import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import InputUnit from "components/auth/InputUnit";
 import Divider from "components/auth/Divider";
@@ -18,39 +16,32 @@ const MainContainer = styled(MainBox)`
 const Form = styled.form``;
 
 export default function SignUp() {
-  const darkMode = useReactiveVar(darkModeVar);
-
   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Container>
-        <MainContainer>
-          <Title />
-          <Paragraph
-            text="Sign up to see photos and videos from your friends."
-            fontSize={16}
-            fontWeight={500}
-          />
-          <InputButton label="Log in with Facebook" icon="faFacebookSquare" />
-          <Divider />
-          <Form>
-            <InputUnit label="Email" type="email" />
-            <InputUnit label="Full Name" type="username" />
-            <InputUnit label="Username" type="username" />
-            <InputUnit label="Password" type="password" />
-            <InputButton label="Sign up" />
-          </Form>
-          <Paragraph
-            text="By signing up, you agree to our Terms, Data Policy and Cookies
-              Policy."
-          />
-        </MainContainer>
-        <AccountBox
-          text="Have an account?"
-          label="Log in"
-          linkTo={routes.home}
+    <Container>
+      <PageTitle title="Sign Up" />
+      <MainContainer>
+        <Title />
+        <Paragraph
+          text="Sign up to see photos and videos from your friends."
+          fontSize={16}
+          fontWeight={500}
         />
-        <AppStore />
-      </Container>
-    </ThemeProvider>
+        <InputButton label="Log in with Facebook" icon="faFacebookSquare" />
+        <Divider />
+        <Form>
+          <InputUnit label="Email" type="email" />
+          <InputUnit label="Full Name" type="username" />
+          <InputUnit label="Username" type="username" />
+          <InputUnit label="Password" type="password" />
+          <InputButton label="Sign up" />
+        </Form>
+        <Paragraph
+          text="By signing up, you agree to our Terms, Data Policy and Cookies
+              Policy."
+        />
+      </MainContainer>
+      <AccountBox text="Have an account?" label="Log in" linkTo={routes.home} />
+      <AppStore />
+    </Container>
   );
 }

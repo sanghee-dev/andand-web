@@ -1,10 +1,8 @@
 import { useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import routes from "router/routes";
-import { useReactiveVar } from "@apollo/client";
-import { darkModeVar } from "apollo";
-import { lightTheme, darkTheme } from "styles/styles";
 import { Container, MainBox } from "components/shared";
+import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import InputUnit from "components/auth/InputUnit";
 import Divider from "components/auth/Divider";
@@ -17,7 +15,6 @@ const MainContainer = styled(MainBox)`
 `;
 
 export default function LoginPresenter() {
-  const darkMode = useReactiveVar(darkModeVar);
   const [username, setUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
 
@@ -37,42 +34,41 @@ export default function LoginPresenter() {
   };
 
   return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Container>
-        <MainContainer>
-          <Title />
-          <h2>{usernameError}</h2>
-          <form onSubmit={handleSubmit}>
-            <InputUnit
-              onChange={onUsernameChange}
-              label="Username, or email"
-              type="username"
-              value={username}
-            />
-            <InputUnit label="Password" type="password" />
-            <InputButton label="Log In" disabled={username.length < 10} />
-          </form>
-          <Divider />
-          <InputButton
-            label="Log in with Facebook"
-            icon="faFacebookSquare"
-            color="rgb(56,81,133)"
-            transparent={true}
+    <Container>
+      <PageTitle title="Login" />
+      <MainContainer>
+        <Title />
+        <h2>{usernameError}</h2>
+        <form onSubmit={handleSubmit}>
+          <InputUnit
+            onChange={onUsernameChange}
+            label="Username, or email"
+            type="username"
+            value={username}
           />
-          <InputButton
-            label="Forgot password?"
-            transparent={true}
-            color="black"
-            fontLight={true}
-          />
-        </MainContainer>
-        <AccountBox
-          text="Don't have an account?"
-          label="Sign up"
-          linkTo={routes.signUp}
+          <InputUnit label="Password" type="password" />
+          <InputButton label="Log In" disabled={username.length < 10} />
+        </form>
+        <Divider />
+        <InputButton
+          label="Log in with Facebook"
+          icon="faFacebookSquare"
+          color="rgb(56,81,133)"
+          transparent={true}
         />
-        <AppStore />
-      </Container>
-    </ThemeProvider>
+        <InputButton
+          label="Forgot password?"
+          transparent={true}
+          color="black"
+          fontLight={true}
+        />
+      </MainContainer>
+      <AccountBox
+        text="Don't have an account?"
+        label="Sign up"
+        linkTo={routes.signUp}
+      />
+      <AppStore />
+    </Container>
   );
 }
