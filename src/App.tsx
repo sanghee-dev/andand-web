@@ -2,10 +2,10 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "styles/styles";
 import { GlobalStyles } from "styles/globalStyles";
 import { useReactiveVar } from "@apollo/client";
-import AppRouter from "AppRouter";
+import AppRouter from "router/AppRouter";
 import { isLoggedInVar, darkModeVar } from "apollo";
 
-const App = () => {
+export default function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
   const darkMode = useReactiveVar(darkModeVar);
 
@@ -15,6 +15,4 @@ const App = () => {
       <AppRouter isLoggedIn={isLoggedIn} />
     </ThemeProvider>
   );
-};
-
-export default App;
+}

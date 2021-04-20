@@ -1,4 +1,5 @@
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import routes from "router/routes";
 import Home from "screens/Home";
 import Login from "screens/Login";
 import SignUp from "screens/SignUp";
@@ -8,18 +9,16 @@ interface IProps {
   isLoggedIn: boolean;
 }
 
-const AppRouter = ({ isLoggedIn }: IProps) => {
+export default function AppRouter({ isLoggedIn }: IProps) {
   return (
     <Router>
       <Switch>
-        <Route path="/" exact>
+        <Route path={routes.home} exact>
           {isLoggedIn ? <Home /> : <Login />}
         </Route>
-        {!isLoggedIn ? <Route path="/Sign-up" component={SignUp} /> : null}
+        {!isLoggedIn ? <Route path={routes.signUp} component={SignUp} /> : null}
         <Route path="/*" component={NotFound} />
       </Switch>
     </Router>
   );
-};
-
-export default AppRouter;
+}

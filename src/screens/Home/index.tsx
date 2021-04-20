@@ -8,14 +8,11 @@ const Title = styled.h1`
   color: ${(props) => props.theme.fontColor};
 `;
 
-const Home = () => {
+export default function Home() {
   const darkMode = useReactiveVar(darkModeVar);
-
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Title>Home</Title>
     </ThemeProvider>
   );
-};
-
-export default Home;
+}

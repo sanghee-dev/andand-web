@@ -8,7 +8,7 @@ const Title = styled.h1`
   color: ${(props) => props.theme.fontColor};
 `;
 
-const NotFound = () => {
+export default function NotFound() {
   const darkMode = useReactiveVar(darkModeVar);
 
   return (
@@ -16,6 +16,4 @@ const NotFound = () => {
       <Title>404 not found</Title>
     </ThemeProvider>
   );
-};
-
-export default NotFound;
+}
