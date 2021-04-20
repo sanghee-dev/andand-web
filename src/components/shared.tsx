@@ -12,7 +12,6 @@ export const Container = styled.div`
 export const Box = styled.div`
   width: 350px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 20px;
   border: ${(props) => props.theme.border};
@@ -20,7 +19,7 @@ export const Box = styled.div`
 `;
 
 export const MainBox = styled(Box)`
-  height: 500px;
+  height: 530px;
   flex-direction: column;
   margin-bottom: 15px;
   padding: 32px 0;
@@ -30,4 +29,5 @@ export const Form = styled.form`
   width: 270px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 15px;
 `;

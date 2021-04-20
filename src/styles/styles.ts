@@ -8,6 +8,7 @@ export const lightTheme: DefaultTheme = {
   facebookColor: "rgb(56,81,133)",
 
   fontColor: "rgb(40,40,40)",
+  fontColorLight: "rgb(120,120,120)",
   fontHeavy: "600",
 
   borderColor: "rgb(220,220,220)",

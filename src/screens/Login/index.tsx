@@ -11,12 +11,16 @@ import InputButton from "components/auth/InputButton";
 import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
 
+const MainContainer = styled(MainBox)`
+  height: 380px;
+`;
+
 export default function Login() {
   const darkMode = useReactiveVar(darkModeVar);
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container>
-        <MainBox>
+        <MainContainer>
           <Title />
           <Form>
             <InputUnit label="Username, or Email" type="username" />
@@ -35,7 +39,7 @@ export default function Login() {
             color="black"
             fontLight={true}
           />
-        </MainBox>
+        </MainContainer>
         <AccountBox
           text="Don't have an account?"
           label="Sign up"

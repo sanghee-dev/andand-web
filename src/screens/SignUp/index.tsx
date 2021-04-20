@@ -12,13 +12,22 @@ import Paragraph from "components/auth/Paragraph";
 import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
 
+const MainContainer = styled(MainBox)`
+  height: 540px;
+`;
+
 export default function SignUp() {
   const darkMode = useReactiveVar(darkModeVar);
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container>
-        <MainBox>
+        <MainContainer>
           <Title />
+          <Paragraph
+            text="Sign up to see photos and videos from your friends."
+            fontSize={16}
+            fontWeight={500}
+          />
           <InputButton label="Log in with Facebook" icon="faFacebookSquare" />
           <Divider />
           <Form>
@@ -32,7 +41,7 @@ export default function SignUp() {
             text="By signing up, you agree to our Terms, Data Policy and Cookies
               Policy."
           />
-        </MainBox>
+        </MainContainer>
         <AccountBox
           text="Have an account?"
           label="Log in"
