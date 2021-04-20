@@ -1,7 +1,7 @@
 import styled, { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "styles/styles";
 import { useReactiveVar } from "@apollo/client";
 import { darkModeVar } from "apollo";
+import { lightTheme, darkTheme } from "styles/styles";
 
 const Title = styled.h1`
   background-color: ${(props) => props.theme.backgroundColor};

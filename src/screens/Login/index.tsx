@@ -1,7 +1,8 @@
 import styled, { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "styles/styles";
+import { Link } from "react-router-dom";
 import { useReactiveVar } from "@apollo/client";
 import { darkModeVar } from "apollo";
+import { lightTheme, darkTheme } from "styles/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 import AppStore from "images/AppStore.png";
@@ -24,7 +25,7 @@ const Box = styled.div`
   border: ${(props) => props.theme.border};
   background-color: white;
 `;
-const TopBox = styled(Box)`
+const LogInBox = styled(Box)`
   height: 380px;
   flex-direction: column;
   margin-bottom: 15px;
@@ -104,21 +105,21 @@ const FacebookBox = styled.div`
   color: ${(props) => props.theme.facebookColor};
   font-size: 20px;
   font-weight: ${(props) => props.theme.fontHeavy};
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   & :not(:last-child) {
     margin-right: 6px;
   }
 `;
-const BottomBox = styled(Box)`
+const SignUpBox = styled(Box)`
   justify-content: center;
   height: 60px;
   & :last-child {
     color: ${(props) => props.theme.accent};
-    margin-left: 6px;
+    margin-left: 4px;
     font-weight: ${(props) => props.theme.fontHeavy};
   }
 `;
-const Footer = styled.div`
+const FooterBox = styled.div`
   & h2 {
     margin: 24px 0;
     text-align: center;
@@ -142,7 +143,7 @@ const Login = () => {
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container>
-        <TopBox>
+        <LogInBox>
           <Title>andand</Title>
           <Form>
             <PlaceHolder>
@@ -167,14 +168,16 @@ const Login = () => {
             </FacebookBox>
             <ButtonText>Forgot password?</ButtonText>
           </ButtonBox>
-        </TopBox>
+        </LogInBox>
 
-        <BottomBox>
+        <SignUpBox>
           <h2>Don't have an account?</h2>
-          <ButtonText>Sign up</ButtonText>
-        </BottomBox>
+          <Link to="/sign-up">
+            <ButtonText>Sign up</ButtonText>
+          </Link>
+        </SignUpBox>
 
-        <Footer>
+        <FooterBox>
           <h2>Get the app.</h2>
           <DownloadBox>
             <Download>
@@ -184,7 +187,7 @@ const Login = () => {
               <img src={GooglePlay} alt="GooglePlay" width="141" height="42" />
             </Download>
           </DownloadBox>
-        </Footer>
+        </FooterBox>
       </Container>
     </ThemeProvider>
   );

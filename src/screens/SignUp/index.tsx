@@ -8,14 +8,14 @@ const Title = styled.h1`
   color: ${(props) => props.theme.fontColor};
 `;
 
-const NotFound = () => {
+const SignUp = () => {
   const darkMode = useReactiveVar(darkModeVar);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Title>404 not found</Title>
+      <Title>SignUp</Title>
     </ThemeProvider>
   );
 };
 
-export default NotFound;
+export default SignUp;
