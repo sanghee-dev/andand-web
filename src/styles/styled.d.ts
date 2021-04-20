@@ -12,9 +12,11 @@ declare module "styled-components" {
     fontHeavy: string;
 
     borderColor: string;
+    borderColorDark: string;
     border: string;
     borderDark: string;
 
+    opacity: string;
     transition: string;
   }
 }

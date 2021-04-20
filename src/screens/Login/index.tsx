@@ -4,6 +4,8 @@ import { useReactiveVar } from "@apollo/client";
 import { darkModeVar } from "apollo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+import AppStore from "images/AppStore.png";
+import GooglePlay from "images/GooglePlay.png";
 
 const Container = styled.div`
   height: 100vh;
@@ -27,28 +29,33 @@ const TopBox = styled(Box)`
   flex-direction: column;
   margin-bottom: 15px;
 `;
+const Title = styled.span`
+  font-size: 40px;
+  font-family: "Pacifico", cursive;
+  margin-top: 20px;
+`;
 const Form = styled.form`
+  width: 270px;
   display: flex;
   flex-direction: column;
 `;
 const PlaceHolder = styled.div`
+  width: 270px;
+  font-size: 12px;
+  color: ${(props) => props.theme.fontColor};
+`;
+const Label = styled.label`
   position: relative;
-  font-size: 14px;
-  &::after {
-    position: absolute;
-    left: 6px;
-    top: 4px;
-    content: attr(data-placeholder);
-    pointer-events: none;
-    opacity: 0.6;
-  }
-  & :focus {
-    color: ${(props) => props.theme.accent};
-    font-size: 14px;
-  }
+  top: 16px;
+  left: 8px;
+  pointer-events: none;
+  font-size: 11px;
+  color: ${(props) => props.theme.borderColorDark};
 `;
 const Input = styled.input`
   width: 270px;
+  box-sizing: border-box;
+  padding-top: 9px;
   &:not(:last-child) {
     margin-bottom: 4px;
   }
@@ -85,6 +92,12 @@ const ButtonBox = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const ButtonText = styled.h2`
+  cursor: pointer;
+  :active {
+    opacity: ${(props) => props.theme.opacity};
+  }
+`;
 const FacebookBox = styled.div`
   display: flex;
   align-items: center;
@@ -105,6 +118,24 @@ const BottomBox = styled(Box)`
     font-weight: ${(props) => props.theme.fontHeavy};
   }
 `;
+const Footer = styled.div`
+  & h2 {
+    margin: 24px 0;
+    text-align: center;
+  }
+`;
+const DownloadBox = styled.div`
+  display: flex;
+`;
+const Download = styled.div`
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+  :active {
+    opacity: ${(props) => props.theme.opacity};
+  }
+`;
 
 const Login = () => {
   const darkMode = useReactiveVar(darkModeVar);
@@ -112,37 +143,48 @@ const Login = () => {
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container>
         <TopBox>
-          <h1>andand</h1>
-
+          <Title>andand</Title>
           <Form>
-            <PlaceHolder data-placeholder="Username">
+            <PlaceHolder>
+              <Label>Username, or email</Label>
               <Input type="text" name="Username" />
             </PlaceHolder>
-            <PlaceHolder data-placeholder="Password">
+            <PlaceHolder>
+              <Label>Password</Label>
               <Input type="password" name="Password" />
             </PlaceHolder>
             <SubmitButton type="submit" value="Log In" />
           </Form>
-
           <Separator>
             <div></div>
             <h2>or</h2>
             <div></div>
           </Separator>
-
           <ButtonBox>
             <FacebookBox>
               <FontAwesomeIcon icon={faFacebookSquare} />
-              <h2>Log in with Facebook</h2>
+              <ButtonText>Log in with Facebook</ButtonText>
             </FacebookBox>
-            <h3>Forgot password?</h3>
+            <ButtonText>Forgot password?</ButtonText>
           </ButtonBox>
         </TopBox>
 
         <BottomBox>
           <h2>Don't have an account?</h2>
-          <h2>Sign up</h2>
+          <ButtonText>Sign up</ButtonText>
         </BottomBox>
+
+        <Footer>
+          <h2>Get the app.</h2>
+          <DownloadBox>
+            <Download>
+              <img src={AppStore} alt="AppStore" width="141" height="42" />
+            </Download>
+            <Download>
+              <img src={GooglePlay} alt="GooglePlay" width="141" height="42" />
+            </Download>
+          </DownloadBox>
+        </Footer>
       </Container>
     </ThemeProvider>
   );
