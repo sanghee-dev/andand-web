@@ -8,9 +8,10 @@ interface IProps {
   color?: string;
   fontLight?: boolean;
   transparent?: boolean;
+  disabled?: boolean;
 }
 
-const Container = styled.div`
+const Button = styled.button`
   width: 270px;
   display: flex;
   justify-content: center;
@@ -26,14 +27,6 @@ const Container = styled.div`
     opacity: ${(props) => props.theme.opacity};
   }
 `;
-const SolidContainer = styled(Container)`
-  background-color: ${(props) => props.theme.accent};
-  color: white;
-`;
-const TransContainer = styled(Container)`
-  background-color: white;
-  color: ${(props) => props.theme.accent};
-`;
 
 export default function InputButton({
   label,
@@ -41,9 +34,18 @@ export default function InputButton({
   color,
   fontLight,
   transparent,
+  disabled,
 }: IProps) {
-  return transparent ? (
-    <TransContainer style={{ color: color, fontWeight: fontLight ? 400 : 500 }}>
+  return (
+    <Button
+      type="submit"
+      style={{
+        color: color ? color : transparent ? "black" : "white",
+        fontWeight: fontLight ? 400 : 500,
+        backgroundColor: transparent ? "white" : "rgb(0,149,246)",
+        opacity: disabled ? 0.3 : 1,
+      }}
+    >
       {icon && (
         <FontAwesomeIcon
           icon={faFacebookSquare}
@@ -54,19 +56,6 @@ export default function InputButton({
         />
       )}
       <h2>{label}</h2>
-    </TransContainer>
-  ) : (
-    <SolidContainer style={{ color: color }}>
-      {icon && (
-        <FontAwesomeIcon
-          icon={faFacebookSquare}
-          style={{
-            marginRight: "6",
-            fontSize: "20",
-          }}
-        />
-      )}
-      <h2>{label}</h2>
-    </SolidContainer>
+    </Button>
   );
 }

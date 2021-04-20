@@ -3,7 +3,7 @@ import routes from "router/routes";
 import { useReactiveVar } from "@apollo/client";
 import { darkModeVar } from "apollo";
 import { lightTheme, darkTheme } from "styles/styles";
-import { Container, MainBox, Form } from "components/shared";
+import { Container, MainBox } from "components/shared";
 import Title from "components/auth/Title";
 import InputUnit from "components/auth/InputUnit";
 import Divider from "components/auth/Divider";
@@ -15,9 +15,11 @@ import AppStore from "components/auth/AppStore";
 const MainContainer = styled(MainBox)`
   height: 540px;
 `;
+const Form = styled.form``;
 
 export default function SignUp() {
   const darkMode = useReactiveVar(darkModeVar);
+
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container>

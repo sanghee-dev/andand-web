@@ -3,6 +3,8 @@ import styled from "styled-components";
 interface IProps {
   label: string;
   type: string;
+  value?: string;
+  onChange?: (event: any) => void;
 }
 
 const Container = styled.div`
@@ -26,11 +28,11 @@ const Input = styled.input`
   padding-top: 12px;
 `;
 
-export default function InputUnit({ label, type }: IProps) {
+export default function InputUnit({ label, type, value, onChange }: IProps) {
   return (
     <Container>
       <Label>{label}</Label>
-      <Input type={type} />
+      <Input onChange={onChange} type={type} value={value} />
     </Container>
   );
 }

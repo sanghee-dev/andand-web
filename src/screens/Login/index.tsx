@@ -1,9 +1,10 @@
+import { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import routes from "router/routes";
 import { useReactiveVar } from "@apollo/client";
 import { darkModeVar } from "apollo";
 import { lightTheme, darkTheme } from "styles/styles";
-import { Container, MainBox, Form } from "components/shared";
+import { Container, MainBox } from "components/shared";
 import Title from "components/auth/Title";
 import InputUnit from "components/auth/InputUnit";
 import Divider from "components/auth/Divider";
@@ -15,22 +16,47 @@ const MainContainer = styled(MainBox)`
   height: 380px;
 `;
 
-export default function Login() {
+export default function LoginPresenter() {
   const darkMode = useReactiveVar(darkModeVar);
+  const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+
+  const onUsernameChange = (event: any): void => {
+    setUsername(event.target.value);
+    setUsernameError("");
+  };
+  const handleSubmit = (event: any): void => {
+    event.preventDefault();
+    if (username?.length < 1) {
+      setUsernameError("Not empty plz.");
+    } else if (username.length < 10) {
+      setUsernameError("Too short.");
+    } else {
+      setUsername("");
+    }
+  };
+
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Container>
         <MainContainer>
           <Title />
-          <Form>
-            <InputUnit label="Username, or Email" type="username" />
+          <h2>{usernameError}</h2>
+          <form onSubmit={handleSubmit}>
+            <InputUnit
+              onChange={onUsernameChange}
+              label="Username, or email"
+              type="username"
+              value={username}
+            />
             <InputUnit label="Password" type="password" />
-            <InputButton label="Log In" />
-          </Form>
+            <InputButton label="Log In" disabled={username.length < 10} />
+          </form>
           <Divider />
           <InputButton
             label="Log in with Facebook"
             icon="faFacebookSquare"
+            color="rgb(56,81,133)"
             transparent={true}
           />
           <InputButton

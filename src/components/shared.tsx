@@ -24,10 +24,3 @@ export const MainBox = styled(Box)`
   margin-bottom: 15px;
   padding: 32px 0;
 `;
-
-export const Form = styled.form`
-  width: 270px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-`;
