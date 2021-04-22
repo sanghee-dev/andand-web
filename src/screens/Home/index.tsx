@@ -1,7 +1,4 @@
-import styled, { ThemeProvider } from "styled-components";
-import { useReactiveVar } from "@apollo/client";
-import { darkModeVar } from "apollo";
-import { lightTheme, darkTheme } from "styles/styles";
+import styled from "styled-components";
 
 const Title = styled.h1`
   background-color: ${(props) => props.theme.backgroundColor};
@@ -9,10 +6,5 @@ const Title = styled.h1`
 `;
 
 export default function Home() {
-  const darkMode = useReactiveVar(darkModeVar);
-  return (
-    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Title>Home</Title>
-    </ThemeProvider>
-  );
+  return <Title>Home</Title>;
 }

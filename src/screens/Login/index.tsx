@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { gql, useMutation } from "@apollo/client";
+import { login, loginVariables } from "__generated__/login";
+import { logUserIn } from "apollo";
 import routes from "router/routes";
 import { Container, Form } from "components/shared";
 import MainBox from "components/auth/MainBox";
@@ -42,6 +44,7 @@ export default function Login() {
   } = useForm<IProps>({
     mode: "onBlur",
   });
+  console.log(watch());
   let { password } = watch();
   const [isShown, setIsShown] = useState(false);
   const onCompleted = (data: any) => {
@@ -49,14 +52,20 @@ export default function Login() {
       login: { ok, error, token },
     } = data;
     if (!ok) {
-      setError("result", {
+      return setError("result", {
         message: error,
       });
     }
+    if (token) {
+      logUserIn(token);
+    }
   };
-  const [login, { loading }] = useMutation(LOGIN_MUTATION, {
-    onCompleted,
-  });
+  const [login, { loading }] = useMutation<login, loginVariables>(
+    LOGIN_MUTATION,
+    {
+      onCompleted,
+    }
+  );
   const onSubmit = handleSubmit((data) => {
     if (loading) {
       return;
@@ -116,11 +125,12 @@ export default function Login() {
                   message: "Password should be less than 20 chars.",
                 },
               })}
-              onChange={clearLoginError}
+              // onChange={clearLoginError}
               type={isShown ? "text" : "password"}
               style={{ borderColor: errors?.password ? "red" : "inherit" }}
             />
             <button
+              type="button"
               style={{
                 color: password?.length > 0 ? "rgb(40,40,40)" : "transparent",
               }}
