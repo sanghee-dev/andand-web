@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import routes from "router/routes";
 import styled from "styled-components";
@@ -25,6 +26,7 @@ type IProps = {
 export default function Login() {
   const {
     register,
+    watch,
     setValue,
     handleSubmit,
     formState: { errors, isValid },
@@ -32,8 +34,8 @@ export default function Login() {
     mode: "onBlur",
   });
   const onSubmit = handleSubmit((data) => console.log(data));
-
-  console.log(errors, isValid);
+  let { username, password } = watch();
+  const [isShown, setIsShown] = useState(false);
 
   return (
     <Container>
@@ -59,6 +61,7 @@ export default function Login() {
                   message: "Username should be less than 20 chars.",
                 },
               })}
+              style={{ borderColor: errors?.username ? "red" : "inherit" }}
             />
           </InputBox>
           <InputBox>
@@ -66,7 +69,7 @@ export default function Login() {
               {errors?.password ? errors?.password?.message : "Password"}
             </label>
             <input
-              type="password"
+              type={isShown ? "text" : "password"}
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -78,10 +81,14 @@ export default function Login() {
                   message: "Password should be less than 20 chars.",
                 },
               })}
+              style={{ borderColor: errors?.password ? "red" : "inherit" }}
             />
             <button
+              style={{
+                color: password?.length > 0 ? "rgb(40,40,40)" : "transparent",
+              }}
               onClick={() => {
-                setValue("password", "");
+                setIsShown((prev) => !prev);
               }}
             >
               Show

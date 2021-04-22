@@ -7,13 +7,14 @@ const InputBox = styled.div`
   color: ${(props) => props.theme.fontColorLight};
   & label {
     position: absolute;
-    margin: 6px 0 0 8px;
+    margin: 5px 0 0 8px;
     font-size: 11px;
   }
   & input {
     width: 100%;
-    padding: 3px 0 0 8px;
+    padding: 4px 0 0 8px;
     font-size: ${(props) => props.theme.h2};
+    color: ${(props) => props.theme.fontColor};
   }
   & button {
     width: 16px;
