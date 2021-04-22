@@ -5,6 +5,7 @@ const InputBox = styled.div`
   display: flex;
   margin: ${(props) => props.theme.marginTopBottom};
   color: ${(props) => props.theme.fontColorLight};
+  border-color: ${(props) => props.theme.borderColor};
   & label {
     position: absolute;
     margin: 5px 0 0 8px;

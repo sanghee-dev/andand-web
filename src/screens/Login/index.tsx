@@ -27,14 +27,13 @@ export default function Login() {
   const {
     register,
     watch,
-    setValue,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<IProps>({
     mode: "onBlur",
   });
   const onSubmit = handleSubmit((data) => console.log(data));
-  let { username, password } = watch();
+  let { password } = watch();
   const [isShown, setIsShown] = useState(false);
 
   return (
