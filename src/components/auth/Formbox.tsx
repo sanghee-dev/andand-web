@@ -10,5 +10,5 @@ const Container = styled.div`
 `;
 
 export default function Formbox({ children, onSubmit }: IProps) {
-  return <Container>{children}</Container>;
+  return <Container onSubmit={onSubmit}>{children}</Container>;
 }

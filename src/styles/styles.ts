@@ -7,6 +7,10 @@ export const lightTheme: DefaultTheme = {
   backgroundColor: "rgb(250,250,250)",
   facebookColor: "rgb(56,81,133)",
 
+  h1: "38px",
+  h2: "14px",
+  h3: "12px",
+
   fontColor: "rgb(40,40,40)",
   fontColorLight: "rgb(120,120,120)",
   fontHeavy: "600",

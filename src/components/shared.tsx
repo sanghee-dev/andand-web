@@ -17,3 +17,7 @@ export const Box = styled.div`
   border: ${(props) => props.theme.border};
   background-color: white;
 `;
+
+export const Form = styled.form`
+  margin: ${(props) => props.theme.marginTopBottom};
+`;

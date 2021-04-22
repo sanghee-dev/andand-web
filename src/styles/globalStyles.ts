@@ -36,16 +36,16 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
   h1 {
-    font-size: 38px;
+    font-size: ${(props) => props.theme.h1};
     font-weight: 300;
     line-height: 1.2;
   }
   h2 {
-    font-size: 14px;
+    font-size: ${(props) => props.theme.h2};
     line-height: 1.2;
   }
   h3 {
-    font-size: 12px;
+    font-size: ${(props) => props.theme.h3};
     line-height: 1.2;
   }
 `;

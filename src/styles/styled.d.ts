@@ -8,6 +8,10 @@ declare module "styled-components" {
     backgroundColor: string;
     facebookColor: string;
 
+    h1: string;
+    h2: string;
+    h3: string;
+
     fontColor: string;
     fontColorLight: string;
     fontHeavy: string;
