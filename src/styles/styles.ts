@@ -16,6 +16,12 @@ export const lightTheme: DefaultTheme = {
   border: "1px solid rgb(220,220,220)",
   borderDark: "1px solid rgb(150,150,150)",
 
+  margin: "6px",
+  marginDouble: "12px",
+  marginTriple: "18px",
+  marginTopBottom: "6px 0",
+  marginTopBottomDouble: "12px 0",
+
   opacity: "0.6",
   transition: "all 0.1s ease-in-out",
 };

@@ -11,8 +11,8 @@ const Container = styled.div`
   width: 270px;
   font-size: 12px;
   color: ${(props) => props.theme.fontColor};
-  margin-top: -12px;
-  margin-bottom: 8px;
+  margin: ${(props) => props.theme.marginTopBottom};
+  margin-top: -${(props) => props.theme.marginDouble}; ;
 `;
 const Label = styled.label`
   position: relative;

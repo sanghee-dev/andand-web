@@ -7,7 +7,7 @@ const Container = styled.div`
   justify-content: space-between;
   color: rgb(160, 160, 160);
   font-size: 20px;
-  margin: 12px 0;
+  margin: ${(props) => props.theme.marginTopBottom};
   & div {
     width: 100px;
     height: 1px;

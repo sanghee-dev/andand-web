@@ -17,10 +17,3 @@ export const Box = styled.div`
   border: ${(props) => props.theme.border};
   background-color: white;
 `;
-
-export const MainBox = styled(Box)`
-  height: 530px;
-  flex-direction: column;
-  margin-bottom: 15px;
-  padding: 32px 0;
-`;

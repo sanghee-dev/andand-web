@@ -4,7 +4,7 @@ import GooglePlayButton from "images/GooglePlayButton.png";
 
 const Container = styled.div`
   & h2 {
-    margin: 24px 0;
+    margin: 18px 0;
     text-align: center;
   }
 `;
@@ -14,7 +14,7 @@ const DownloadBox = styled.div`
 const Download = styled.div`
   cursor: pointer;
   &:not(:last-child) {
-    margin-right: 8px;
+    margin-right: ${(props) => props.theme.margin};
   }
   :active {
     opacity: ${(props) => props.theme.opacity};

@@ -17,6 +17,12 @@ declare module "styled-components" {
     border: string;
     borderDark: string;
 
+    margin: string;
+    marginDouble: string;
+    marginTriple: string;
+    marginTopBottom: string;
+    marginTopBottomDouble: string;
+
     opacity: string;
     transition: string;
   }

@@ -17,6 +17,7 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   padding: 8px;
+  margin: ${(props) => props.theme.marginTopBottom};
   border-radius: 4px;
   font-size: 12px;
   font-weight: ${(props) => props.theme.fontHeavy};

@@ -1,23 +1,19 @@
 import { useState } from "react";
-import styled from "styled-components";
 import routes from "router/routes";
-import { Container, MainBox } from "components/shared";
+import { Container } from "components/shared";
+import MainBox from "components/auth/MainBox";
 import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import InputUnit from "components/auth/InputUnit";
+import Formbox from "components/auth/Formbox";
 import Divider from "components/auth/Divider";
 import InputButton from "components/auth/InputButton";
 import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
 
-const MainContainer = styled(MainBox)`
-  height: 380px;
-`;
-
 export default function LoginPresenter() {
   const [username, setUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
-
   const onUsernameChange = (event: any): void => {
     setUsername(event.target.value);
     setUsernameError("");
@@ -36,10 +32,10 @@ export default function LoginPresenter() {
   return (
     <Container>
       <PageTitle title="Login" />
-      <MainContainer>
+      <MainBox height={370}>
         <Title />
         <h2>{usernameError}</h2>
-        <form onSubmit={handleSubmit}>
+        <Formbox onSubmit={handleSubmit}>
           <InputUnit
             onChange={onUsernameChange}
             label="Username, or email"
@@ -48,7 +44,7 @@ export default function LoginPresenter() {
           />
           <InputUnit label="Password" type="password" />
           <InputButton label="Log In" disabled={username.length < 10} />
-        </form>
+        </Formbox>
         <Divider />
         <InputButton
           label="Log in with Facebook"
@@ -62,7 +58,7 @@ export default function LoginPresenter() {
           color="black"
           fontLight={true}
         />
-      </MainContainer>
+      </MainBox>
       <AccountBox
         text="Don't have an account?"
         label="Sign up"

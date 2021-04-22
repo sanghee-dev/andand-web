@@ -21,7 +21,7 @@ const Container = styled(Box)`
   height: 60px;
   & :last-child {
     color: ${(props) => props.theme.accent};
-    margin-left: 4px;
+    margin-left: ${(props) => props.theme.margin};
     font-weight: ${(props) => props.theme.fontHeavy};
   }
 `;
