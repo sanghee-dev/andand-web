@@ -3,6 +3,7 @@ import AppStoreButton from "images/AppStoreButton.png";
 import GooglePlayButton from "images/GooglePlayButton.png";
 
 const Container = styled.div`
+  margin-bottom: ${(props) => props.theme.marginSixTimes};
   & h2 {
     margin: 18px 0;
     text-align: center;

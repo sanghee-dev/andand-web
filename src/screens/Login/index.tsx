@@ -35,7 +35,6 @@ const LOGIN_MUTATION = gql`
 export default function Login() {
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors, isValid },
     getValues,
@@ -43,9 +42,9 @@ export default function Login() {
     clearErrors,
   } = useForm<IProps>({
     mode: "onBlur",
+    reValidateMode: "onSubmit",
   });
-  console.log(watch());
-  let { password } = watch();
+  const { username, password } = getValues();
   const [isShown, setIsShown] = useState(false);
   const onCompleted = (data: any) => {
     const {
@@ -81,6 +80,13 @@ export default function Login() {
   const clearLoginError = () => {
     clearErrors("result");
   };
+
+  // instead of isValid
+  const loginValid =
+    username?.length > 5 &&
+    username?.length < 20 &&
+    password?.length > 5 &&
+    password?.length < 20;
 
   return (
     <Container>
@@ -125,7 +131,7 @@ export default function Login() {
                   message: "Password should be less than 20 chars.",
                 },
               })}
-              // onChange={clearLoginError}
+              onChange={clearLoginError}
               type={isShown ? "text" : "password"}
               style={{ borderColor: errors?.password ? "red" : "inherit" }}
             />
@@ -144,7 +150,7 @@ export default function Login() {
           <Button
             type="submit"
             value={loading ? "Loading..." : "Log In"}
-            disabled={!isValid || loading}
+            disabled={!loginValid || loading}
           />
         </Form>
 

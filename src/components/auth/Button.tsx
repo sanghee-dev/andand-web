@@ -3,18 +3,14 @@ import styled from "styled-components";
 const Button = styled.input`
   width: 100%;
   margin: ${(props) => props.theme.marginTopBottom};
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: ${(props) => props.theme.fontHeavy};
   text-align: center;
+  font-weight: ${(props) => props.theme.fontHeavy};
   color: white;
-  font-size: ${(props) => props.theme.h2};
+  border-radius: 4px;
   border: none;
+  font-size: ${(props) => props.theme.h2};
   background-color: ${(props) => props.theme.accent};
   opacity: ${(props) => (props.disabled ? props.theme.opacityDouble : 1)};
-  &:hover {
-    cursor: pointer;
-  }
   &:active {
     opacity: ${(props) => props.theme.opacity};
   }

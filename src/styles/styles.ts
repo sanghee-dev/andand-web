@@ -24,6 +24,7 @@ export const lightTheme: DefaultTheme = {
   margin: "6px",
   marginDouble: "12px",
   marginTriple: "18px",
+  marginSixTimes: "36px",
   marginTopBottom: "6px 0",
   marginTopBottomDouble: "12px 0",
 

@@ -11,7 +11,6 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${(props) => props.theme.backgroundColor};
     color: ${(props) => props.theme.fontColor};
     overflow-y:scroll;
-    margin: 30px 0;
   }
   a {
     text-decoration: none;
@@ -21,6 +20,13 @@ export const GlobalStyles = createGlobalStyle`
     border: 0;
     outline: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    cursor:pointer;
+    background-color: transparent;
+    border-radius: 4px;
+    text-align: center;
+    &:active {
+    opacity: ${(props) => props.theme.opacity};
+    }
   }
   input {
     all:unset;

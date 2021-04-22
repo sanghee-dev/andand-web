@@ -25,6 +25,7 @@ declare module "styled-components" {
     margin: string;
     marginDouble: string;
     marginTriple: string;
+    marginSixTimes: string;
     marginTopBottom: string;
     marginTopBottomDouble: string;
 

@@ -9,6 +9,7 @@ const Container = styled(Box)`
   flex-direction: column;
   margin-bottom: ${(props) => props.theme.marginDouble};
   padding: 32px 0;
+  margin-top: ${(props) => props.theme.marginSixTimes};
 `;
 
 export default function MainBox({ children }: IProps) {
