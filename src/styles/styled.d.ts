@@ -7,6 +7,7 @@ declare module "styled-components" {
     accentDark: string;
     backgroundColor: string;
     facebookColor: string;
+    errorColor: string;
 
     h1: string;
     h2: string;

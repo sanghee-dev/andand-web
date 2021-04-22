@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { gql, useMutation } from "@apollo/client";
 import routes from "router/routes";
-import styled from "styled-components";
-import { Container } from "components/shared";
+import { Container, Form } from "components/shared";
 import MainBox from "components/auth/MainBox";
 import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
@@ -12,16 +12,23 @@ import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
 import Button from "components/auth/Button";
 import InputBox from "components/auth/InputBox";
-
-const Form = styled.form`
-  width: 100%;
-  padding: 0 32px;
-`;
+import ErrorMessage from "components/auth/ErrorMessage";
 
 type IProps = {
   username: string;
   password: string;
+  result: string;
 };
+
+const LOGIN_MUTATION = gql`
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      ok
+      error
+      token
+    }
+  }
+`;
 
 export default function Login() {
   const {
@@ -29,18 +36,47 @@ export default function Login() {
     watch,
     handleSubmit,
     formState: { errors, isValid },
+    getValues,
+    setError,
+    clearErrors,
   } = useForm<IProps>({
     mode: "onBlur",
   });
-  const onSubmit = handleSubmit((data) => console.log(data));
   let { password } = watch();
   const [isShown, setIsShown] = useState(false);
+  const onCompleted = (data: any) => {
+    const {
+      login: { ok, error, token },
+    } = data;
+    if (!ok) {
+      setError("result", {
+        message: error,
+      });
+    }
+  };
+  const [login, { loading }] = useMutation(LOGIN_MUTATION, {
+    onCompleted,
+  });
+  const onSubmit = handleSubmit((data) => {
+    if (loading) {
+      return;
+    }
+    const { username, password } = getValues();
+    login({
+      variables: {
+        username,
+        password,
+      },
+    });
+  });
+  const clearLoginError = () => {
+    clearErrors("result");
+  };
 
   return (
     <Container>
       <PageTitle title="Login" />
-
-      <MainBox height={390}>
+      <MainBox>
         <Title />
         <Form onSubmit={onSubmit}>
           <InputBox>
@@ -48,7 +84,6 @@ export default function Login() {
               {errors?.username ? errors?.username?.message : "Username"}
             </label>
             <input
-              type="text"
               {...register("username", {
                 required: "Username is required",
                 minLength: {
@@ -60,6 +95,8 @@ export default function Login() {
                   message: "Username should be less than 20 chars.",
                 },
               })}
+              onChange={clearLoginError}
+              type="text"
               style={{ borderColor: errors?.username ? "red" : "inherit" }}
             />
           </InputBox>
@@ -68,7 +105,6 @@ export default function Login() {
               {errors?.password ? errors?.password?.message : "Password"}
             </label>
             <input
-              type={isShown ? "text" : "password"}
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -80,6 +116,8 @@ export default function Login() {
                   message: "Password should be less than 20 chars.",
                 },
               })}
+              onChange={clearLoginError}
+              type={isShown ? "text" : "password"}
               style={{ borderColor: errors?.password ? "red" : "inherit" }}
             />
             <button
@@ -90,10 +128,14 @@ export default function Login() {
                 setIsShown((prev) => !prev);
               }}
             >
-              Show
+              {isShown ? "Hide" : "Show"}
             </button>
           </InputBox>
-          <Button type="submit" value="Log In" disabled={!isValid} />
+          <Button
+            type="submit"
+            value={loading ? "Loading..." : "Log In"}
+            disabled={!isValid || loading}
+          />
         </Form>
 
         <Divider />
@@ -104,6 +146,7 @@ export default function Login() {
           color="rgb(56,81,133)"
           transparent={true}
         />
+        <ErrorMessage message={errors?.result?.message || ""} />
         <TextButton
           label="Forgot password?"
           transparent={true}

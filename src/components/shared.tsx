@@ -18,5 +18,7 @@ export const Box = styled.div`
 `;
 
 export const Form = styled.form`
+  width: 100%;
   margin: ${(props) => props.theme.marginTopBottom};
+  padding: 0 32px;
 `;

@@ -13,7 +13,7 @@ export default function SignUp() {
   return (
     <Container>
       <PageTitle title="Sign Up" />
-      <MainBox height={500}>
+      <MainBox>
         <Title />
         <Paragraph
           text="Sign up to see photos and videos from your friends."

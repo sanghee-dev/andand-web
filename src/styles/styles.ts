@@ -6,6 +6,7 @@ export const lightTheme: DefaultTheme = {
   accentDark: "rgb(0, 118, 197)",
   backgroundColor: "rgb(250,250,250)",
   facebookColor: "rgb(56,81,133)",
+  errorColor: "rgb(240,73,86)",
 
   h1: "38px",
   h2: "14px",

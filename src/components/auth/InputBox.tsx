@@ -10,6 +10,7 @@ const InputBox = styled.div`
     position: absolute;
     margin: 5px 0 0 8px;
     font-size: 11px;
+    user-select: none;
   }
   & input {
     width: 100%;
