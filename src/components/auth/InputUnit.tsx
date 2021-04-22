@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 interface IProps {
+  ref?: (event: any) => void;
   label: string;
   type: string;
   value?: string;
@@ -28,11 +29,17 @@ const Input = styled.input`
   padding-top: 12px;
 `;
 
-export default function InputUnit({ label, type, value, onChange }: IProps) {
+export default function InputUnit({
+  ref,
+  onChange,
+  label,
+  type,
+  value,
+}: IProps) {
   return (
     <Container>
       <Label>{label}</Label>
-      <Input onChange={onChange} type={type} value={value} />
+      <Input ref={ref} onChange={onChange} type={type} value={value} />
     </Container>
   );
 }

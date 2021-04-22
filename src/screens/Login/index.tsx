@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 import routes from "router/routes";
 import { Container } from "components/shared";
 import MainBox from "components/auth/MainBox";
@@ -12,38 +12,21 @@ import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
 
 export default function LoginPresenter() {
-  const [username, setUsername] = useState("");
-  const [usernameError, setUsernameError] = useState("");
-  const onUsernameChange = (event: any): void => {
-    setUsername(event.target.value);
-    setUsernameError("");
-  };
-  const handleSubmit = (event: any): void => {
-    event.preventDefault();
-    if (username?.length < 1) {
-      setUsernameError("Not empty plz.");
-    } else if (username.length < 10) {
-      setUsernameError("Too short.");
-    } else {
-      setUsername("");
-    }
-  };
+  const { register, watch } = useForm();
 
   return (
     <Container>
       <PageTitle title="Login" />
       <MainBox height={370}>
         <Title />
-        <h2>{usernameError}</h2>
-        <Formbox onSubmit={handleSubmit}>
+        <Formbox>
           <InputUnit
-            onChange={onUsernameChange}
+            ref={register}
             label="Username, or email"
             type="username"
-            value={username}
           />
-          <InputUnit label="Password" type="password" />
-          <InputButton label="Log In" disabled={username.length < 10} />
+          <InputUnit ref={register} label="Password" type="password" />
+          <InputButton label="Log In" disabled={true} />
         </Formbox>
         <Divider />
         <InputButton
