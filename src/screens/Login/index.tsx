@@ -41,7 +41,7 @@ export default function Login() {
     <Container>
       <PageTitle title="Login" />
 
-      <MainBox height={370}>
+      <MainBox height={390}>
         <Title />
         <Form onSubmit={onSubmit}>
           <InputBox>
@@ -105,8 +105,6 @@ export default function Login() {
           color="rgb(56,81,133)"
           transparent={true}
         />
-        <h2>{errors.username?.message}</h2>
-        <h2>{errors.password?.message}</h2>
         <TextButton
           label="Forgot password?"
           transparent={true}
