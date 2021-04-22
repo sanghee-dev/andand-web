@@ -27,7 +27,6 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${(props) => props.theme.backgroundColor};
     border-radius: 2px;
     height: 38px;
-    padding: 0 8px;
     &::placeholder{
       color: rgb(160,160,160);
     }

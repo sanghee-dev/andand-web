@@ -4,7 +4,7 @@ import MainBox from "components/auth/MainBox";
 import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import Divider from "components/auth/Divider";
-import InputButton from "components/auth/InputButton";
+import TextButton from "components/auth/TextButton";
 import Paragraph from "components/auth/Paragraph";
 import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
@@ -21,7 +21,7 @@ export default function SignUp() {
           fontWeight={500}
           marginBottom={10}
         />
-        <InputButton label="Log in with Facebook" icon="faFacebookSquare" />
+        <TextButton label="Log in with Facebook" icon="faFacebookSquare" />
         <Divider />
         {/* <Form>
           <InputUnit label="Email" type="email" />

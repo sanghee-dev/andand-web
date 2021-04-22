@@ -6,33 +6,15 @@ import MainBox from "components/auth/MainBox";
 import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import Divider from "components/auth/Divider";
-import InputButton from "components/auth/InputButton";
+import TextButton from "components/auth/TextButton";
 import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
+import Button from "components/auth/Button";
+import InputBox from "components/auth/InputBox";
 
-const Form = styled.form``;
-const InputBox = styled.div`
-  width: 270px;
-  display: flex;
-  & label {
-    width: 0;
-    position: relative;
-    top: 6px;
-    left: 8px;
-    font-size: 10px;
-    color: ${(props) => props.theme.fontColorLight};
-  }
-  & input {
-    width: 270px;
-    padding-top: 2px;
-    font-size: ${(props) => props.theme.h2};
-  }
-  & button {
-    position: relative;
-    :hover {
-      cursor: pointer;
-    }
-  }
+const Form = styled.form`
+  width: 100%;
+  padding: 0 32px;
 `;
 
 type IProps = {
@@ -45,11 +27,13 @@ export default function Login() {
     register,
     setValue,
     handleSubmit,
-    formState: { errors },
-  } = useForm<IProps>();
+    formState: { errors, isValid },
+  } = useForm<IProps>({
+    mode: "onBlur",
+  });
   const onSubmit = handleSubmit((data) => console.log(data));
 
-  console.log(errors);
+  console.log(errors, isValid);
 
   return (
     <Container>
@@ -59,8 +43,11 @@ export default function Login() {
         <Title />
         <Form onSubmit={onSubmit}>
           <InputBox>
-            <label>Username</label>
+            <label style={{ color: errors?.username ? "red" : "inherit" }}>
+              {errors?.username ? errors?.username?.message : "Username"}
+            </label>
             <input
+              type="text"
               {...register("username", {
                 required: "Username is required",
                 minLength: {
@@ -73,19 +60,13 @@ export default function Login() {
                 },
               })}
             />
-            <button
-              type="button"
-              onClick={() => {
-                setValue("username", "");
-              }}
-            >
-              x
-            </button>
           </InputBox>
-
           <InputBox>
-            <label>Password</label>
+            <label style={{ color: errors?.password ? "red" : "inherit" }}>
+              {errors?.password ? errors?.password?.message : "Password"}
+            </label>
             <input
+              type="password"
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -99,26 +80,27 @@ export default function Login() {
               })}
             />
             <button
-              type="button"
               onClick={() => {
                 setValue("password", "");
               }}
             >
-              x
+              Show
             </button>
           </InputBox>
-          <input type="submit" />
+          <Button type="submit" value="Log In" disabled={!isValid} />
         </Form>
 
         <Divider />
 
-        <InputButton
+        <TextButton
           label="Log in with Facebook"
           icon="faFacebookSquare"
           color="rgb(56,81,133)"
           transparent={true}
         />
-        <InputButton
+        <h2>{errors.username?.message}</h2>
+        <h2>{errors.password?.message}</h2>
+        <TextButton
           label="Forgot password?"
           transparent={true}
           color="black"

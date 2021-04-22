@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const Button = styled.button`
-  width: 270px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,13 +29,12 @@ const Button = styled.button`
   }
 `;
 
-export default function InputButton({
+export default function TextButton({
   label,
   icon,
   color,
   fontLight,
   transparent,
-  disabled,
 }: IProps) {
   return (
     <Button
@@ -44,7 +43,6 @@ export default function InputButton({
         color: color ? color : transparent ? "black" : "white",
         fontWeight: fontLight ? 400 : 500,
         backgroundColor: transparent ? "white" : "rgb(0,149,246)",
-        opacity: disabled ? 0.3 : 1,
       }}
     >
       {icon && (

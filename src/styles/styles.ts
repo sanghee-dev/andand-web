@@ -26,7 +26,8 @@ export const lightTheme: DefaultTheme = {
   marginTopBottom: "6px 0",
   marginTopBottomDouble: "12px 0",
 
-  opacity: "0.6",
+  opacity: "0.7",
+  opacityDouble: "0.4",
   transition: "all 0.1s ease-in-out",
 };
 

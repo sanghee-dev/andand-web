@@ -28,6 +28,7 @@ declare module "styled-components" {
     marginTopBottomDouble: string;
 
     opacity: string;
+    opacityDouble: string;
     transition: string;
   }
 }
