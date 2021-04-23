@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
+import { useHistory } from "react-router-dom";
 
 const TOKEN = "token";
 
@@ -6,14 +7,16 @@ const isLoggedIn = Boolean(localStorage.getItem(TOKEN));
 export const isLoggedInVar = makeVar(isLoggedIn);
 export const darkModeVar = makeVar(false);
 
-export const logUserIn = (token: string) => {
+export const LogUserIn = (token: string) => {
   localStorage.setItem(TOKEN, token);
   isLoggedInVar(true);
 };
 
-export const logUserOut = () => {
+export const LogUserOut = () => {
   localStorage.removeItem(TOKEN);
-  isLoggedInVar(false);
+  const history = useHistory();
+  history.replace("/");
+  window.location.reload();
 };
 
 export const client = new ApolloClient({

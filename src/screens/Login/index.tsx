@@ -1,23 +1,31 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 import { login, loginVariables } from "__generated__/login";
-import { logUserIn } from "apollo";
+import { LogUserIn } from "apollo";
 import routes from "router/routes";
 import { Container, Form } from "components/shared";
 import MainBox from "components/auth/MainBox";
 import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import Divider from "components/auth/Divider";
-import IconButton from "components/auth/IconButton";
+import IconButton from "components/button/IconButton";
 import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
-import SoildButton from "components/auth/SoildButton";
+import SoildButton from "components/button/SoildButton";
 import InputBox from "components/auth/InputBox";
 import ErrorMessage from "components/auth/ErrorMessage";
-import TextButton from "components/auth/TextButton";
+import TextButton from "components/button/TextButton";
+import Notification from "components/Notification";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
+
+interface IStateType {
+  username?: string;
+  password?: string;
+  message?: string;
+}
 
 type IProps = {
   username: string;
@@ -36,6 +44,8 @@ const LOGIN_MUTATION = gql`
 `;
 
 export default function Login() {
+  const location = useLocation<IStateType>();
+  console.log(location);
   const {
     register,
     handleSubmit,
@@ -44,10 +54,9 @@ export default function Login() {
     setError,
     clearErrors,
   } = useForm<IProps>({
-    mode: "onBlur",
-    reValidateMode: "onSubmit",
+    mode: "onChange",
   });
-  const { username, password } = getValues();
+  const { password } = getValues();
   const [isShown, setIsShown] = useState(false);
   const onCompleted = (data: any) => {
     const {
@@ -59,7 +68,7 @@ export default function Login() {
       });
     }
     if (token) {
-      logUserIn(token);
+      LogUserIn(token);
     }
   };
   const [login, { loading }] = useMutation<login, loginVariables>(
@@ -87,6 +96,7 @@ export default function Login() {
       <PageTitle title="Login" />
       <MainBox>
         <Title />
+        <Notification message={location?.state?.message || ""} />
         <Form onSubmit={onSubmit}>
           <InputBox>
             <label style={{ color: errors?.username ? "red" : "inherit" }}>
@@ -104,6 +114,7 @@ export default function Login() {
                   message: "Username should be less than 20 chars.",
                 },
               })}
+              defaultValue={location?.state?.username}
               onChange={clearLoginError}
               type="text"
               style={{ borderColor: errors?.username ? "red" : "inherit" }}
@@ -125,6 +136,7 @@ export default function Login() {
                   message: "Password should be less than 20 chars.",
                 },
               })}
+              defaultValue={location?.state?.password}
               onChange={clearLoginError}
               type={isShown ? "text" : "password"}
               style={{ borderColor: errors?.password ? "red" : "inherit" }}
@@ -144,12 +156,10 @@ export default function Login() {
           <SoildButton
             type="submit"
             value={loading ? "Loading..." : "Log In"}
-            disabled={!isValid || loading}
+            disabled={loading} // {!isValid || loading}
           />
         </Form>
-
         <Divider />
-
         <IconButton type="submit" style={{ color: "rgb(56,81,133)" }}>
           <label>
             <FontAwesomeIcon icon={faFacebookSquare} style={{ fontSize: 18 }} />

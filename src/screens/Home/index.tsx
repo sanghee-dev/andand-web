@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { logUserOut } from "apollo";
+import { LogUserOut } from "apollo";
 
 const Title = styled.h1`
   background-color: ${(props) => props.theme.backgroundColor};
@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Title>Home</Title>
-      <button onClick={() => logUserOut()}>Log out now!</button>
+      <button onClick={() => LogUserOut()}>Log out now!</button>
     </>
   );
 }

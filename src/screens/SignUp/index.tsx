@@ -6,21 +6,21 @@ import {
   createAccountVariables,
 } from "__generated__/createAccount";
 import routes from "router/routes";
+import { useHistory } from "react-router-dom";
 import { Container, Form } from "components/shared";
 import MainBox from "components/auth/MainBox";
 import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import Divider from "components/auth/Divider";
-import IconButton from "components/auth/IconButton";
+import IconButton from "components/button/IconButton";
 import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
-import SoildButton from "components/auth/SoildButton";
+import SoildButton from "components/button/SoildButton";
 import InputBox from "components/auth/InputBox";
 import ErrorMessage from "components/auth/ErrorMessage";
 import Paragraph from "components/auth/Paragraph";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
-import { useHistory } from "react-router";
 
 type IProps = {
   firstName: string;
@@ -62,10 +62,10 @@ export default function SignUp() {
     setError,
     clearErrors,
   } = useForm<IProps>({
-    mode: "onBlur",
+    mode: "onChange",
     reValidateMode: "onSubmit",
   });
-  const { password } = getValues();
+  const { username, password } = getValues();
   const [isShown, setIsShown] = useState(false);
   const onCompleted = (data: any) => {
     const {
@@ -75,8 +75,13 @@ export default function SignUp() {
       return setError("result", {
         message: error,
       });
+    } else {
+      history.push(routes.home, {
+        username,
+        password,
+        message: "Account created. Plesase log in.",
+      });
     }
-    history.push(routes.home);
   };
   const [createAccount, { loading }] = useMutation<
     createAccount,
@@ -219,7 +224,7 @@ export default function SignUp() {
           <SoildButton
             type="submit"
             value="Sign up"
-            disabled={!isValid || loading}
+            disabled={loading} // {!isValid || loading}
           />
         </Form>
         <ErrorMessage message={errors?.result?.message || ""} />
