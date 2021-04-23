@@ -17,6 +17,7 @@ const InputBox = styled.div`
     padding: 4px 0 0 8px;
     font-size: ${(props) => props.theme.h2};
     color: ${(props) => props.theme.fontColor};
+    background-color: white;
   }
   & button {
     width: 16px;
