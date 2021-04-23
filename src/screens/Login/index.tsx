@@ -9,12 +9,15 @@ import MainBox from "components/auth/MainBox";
 import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import Divider from "components/auth/Divider";
-import TextButton from "components/auth/TextButton";
+import IconButton from "components/auth/IconButton";
 import AccountBox from "components/auth/AccountBox";
 import AppStore from "components/auth/AppStore";
-import Button from "components/auth/Button";
+import SoildButton from "components/auth/SoildButton";
 import InputBox from "components/auth/InputBox";
 import ErrorMessage from "components/auth/ErrorMessage";
+import TextButton from "components/auth/TextButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 
 type IProps = {
   username: string;
@@ -69,24 +72,15 @@ export default function Login() {
     if (loading) {
       return;
     }
-    const { username, password } = getValues();
     login({
       variables: {
-        username,
-        password,
+        ...data,
       },
     });
   });
   const clearLoginError = () => {
     clearErrors("result");
   };
-
-  // instead of isValid
-  const loginValid =
-    username?.length > 5 &&
-    username?.length < 20 &&
-    password?.length > 5 &&
-    password?.length < 20;
 
   return (
     <Container>
@@ -100,7 +94,7 @@ export default function Login() {
             </label>
             <input
               {...register("username", {
-                required: "Username is required",
+                required: "Username is required.",
                 minLength: {
                   value: 5,
                   message: "Username should be longer than 5 chars.",
@@ -121,7 +115,7 @@ export default function Login() {
             </label>
             <input
               {...register("password", {
-                required: "Password is required",
+                required: "Password is required.",
                 minLength: {
                   value: 5,
                   message: "Password should be longer than 5 chars.",
@@ -147,28 +141,23 @@ export default function Login() {
               {isShown ? "Hide" : "Show"}
             </button>
           </InputBox>
-          <Button
+          <SoildButton
             type="submit"
             value={loading ? "Loading..." : "Log In"}
-            disabled={!loginValid || loading}
+            disabled={!isValid || loading}
           />
         </Form>
 
         <Divider />
 
-        <TextButton
-          label="Log in with Facebook"
-          icon="faFacebookSquare"
-          color="rgb(56,81,133)"
-          transparent={true}
-        />
+        <IconButton type="submit" style={{ color: "rgb(56,81,133)" }}>
+          <label>
+            <FontAwesomeIcon icon={faFacebookSquare} style={{ fontSize: 18 }} />
+          </label>
+          <label>Log in with Facebook</label>
+        </IconButton>
         <ErrorMessage message={errors?.result?.message || ""} />
-        <TextButton
-          label="Forgot password?"
-          transparent={true}
-          color="black"
-          fontLight={true}
-        />
+        <TextButton type="button" value="Forgot password?" />
       </MainBox>
       <AccountBox
         text="Don't have an account?"

@@ -17,15 +17,15 @@ export const GlobalStyles = createGlobalStyle`
     color: inherit;
   }
   button {
-    border: 0;
+    border: none;
     outline: none;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    cursor:pointer;
+    cursor: pointer;
     background-color: transparent;
     border-radius: 4px;
     text-align: center;
     &:active {
-    opacity: ${(props) => props.theme.opacity};
+      opacity: ${(props) => props.theme.opacity};
     }
   }
   input {
