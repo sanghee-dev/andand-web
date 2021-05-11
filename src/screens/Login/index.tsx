@@ -45,7 +45,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors }, // isValid
+    formState: { errors, isValid },
     getValues,
     setError,
     clearErrors,
@@ -152,7 +152,7 @@ export default function Login() {
           type="submit"
           value={loading ? "Loading..." : "Log In"}
           disabled={loading} // {!isValid || loading}
-        />
+        ></SoildButton>
       </Form>
       <Divider />
       <IconButton type="submit" style={{ color: "rgb(56,81,133)" }}>

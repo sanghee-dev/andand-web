@@ -33,5 +33,7 @@ declare module "styled-components" {
     opacity: string;
     opacityDouble: string;
     transition: string;
+
+    wrapperWIdth: string;
   }
 }

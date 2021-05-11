@@ -24,6 +24,8 @@ const sharedProps = {
   opacity: "0.7",
   opacityDouble: "0.4",
   transition: "all 0.1s ease-in-out",
+
+  wrapperWIdth: "800px",
 };
 
 export const lightTheme: DefaultTheme = {
