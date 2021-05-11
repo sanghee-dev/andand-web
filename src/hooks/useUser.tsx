@@ -23,7 +23,7 @@ function useUser() {
       LogUserOut();
     }
   }, [data]);
-  return "";
+  return { data };
 }
 
 export default useUser;

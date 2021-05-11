@@ -1,12 +1,19 @@
 import styled from "styled-components";
 
+interface IProps {
+  fontSize?: number;
+  marginBottom?: number;
+}
+
 const Span = styled.span`
-  font-size: 40px;
   font-family: "Pacifico", cursive;
-  margin-bottom: ${(props) => props.theme.marginTriple};
   text-align: center;
 `;
 
-export default function Title({}) {
-  return <Span>andand</Span>;
+export default function Title({ fontSize = 20, marginBottom }: IProps) {
+  return (
+    <Span style={{ fontSize: fontSize, marginBottom: marginBottom }}>
+      andand
+    </Span>
+  );
 }

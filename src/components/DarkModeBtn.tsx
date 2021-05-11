@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useReactiveVar } from "@apollo/client";
 import { darkModeVar, disableDarkMode, enableDarkMode } from "apollo";
 
-const RADIUS = 16;
+const RADIUS = 14;
 const INNERSPACE = 2;
 
 const Container = styled.div`

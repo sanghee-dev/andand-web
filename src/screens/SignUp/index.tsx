@@ -104,7 +104,7 @@ export default function SignUp() {
   return (
     <AuthLayout>
       <PageTitle title="Sign Up" />
-      <Title />
+      <Title fontSize={38} marginBottom={18} />
       <Paragraph
         text="Sign up to see photos and videos from your friends."
         fontSize={16}

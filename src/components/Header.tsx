@@ -4,11 +4,13 @@ import { isLoggedInVar } from "apollo";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faCompass, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faCompass } from "@fortawesome/free-regular-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import DarkModeBtn from "components/DarkModeBtn";
 import SolidButtonSmall from "components/button/SolidButtonSmall";
 import useUser from "hooks/useUser";
+import Avatar from "components/Avatar";
+import Title from "components/auth/Title";
 
 const Container = styled.div`
   width: 100%;
@@ -27,6 +29,8 @@ const Wrapper = styled.div`
 `;
 const IconBox = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   & :not(:last-child) {
     margin-right: ${(props) => props.theme.marginDouble};
   }
@@ -42,15 +46,13 @@ const Icon = styled.div`
 
 export default function Header() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
-  const loggedInUser = useUser();
+  const { data } = useUser();
 
   return (
     <Container>
       <Wrapper>
         <IconBox>
-          <Icon>
-            <FontAwesomeIcon icon={faInstagram} style={{ fontSize: 22 }} />
-          </Icon>
+          <Title fontSize={20} />
         </IconBox>
         {isLoggedIn ? (
           <>
@@ -61,9 +63,7 @@ export default function Header() {
               <Icon>
                 <FontAwesomeIcon icon={faCompass} style={{ fontSize: 20 }} />
               </Icon>
-              <Icon>
-                <FontAwesomeIcon icon={faUser} style={{ fontSize: 20 }} />
-              </Icon>
+              <Avatar url={data?.me?.avatar} />
               <DarkModeBtn />
             </IconBox>
           </>

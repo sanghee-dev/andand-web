@@ -90,7 +90,7 @@ export default function Login() {
   return (
     <AuthLayout>
       <PageTitle title="Login" />
-      <Title />
+      <Title fontSize={38} marginBottom={18} />
       <Notification message={location?.state?.message || ""} />
       <Form onSubmit={onSubmit}>
         <InputBox>
