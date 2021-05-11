@@ -45,7 +45,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors }, // errors, isValid
     getValues,
     setError,
     clearErrors,
@@ -90,7 +90,7 @@ export default function Login() {
   return (
     <AuthLayout>
       <PageTitle title="Login" />
-      <Title fontSize={38} marginBottom={18} />
+      <Title />
       <Notification message={location?.state?.message || ""} />
       <Form onSubmit={onSubmit}>
         <InputBox>
@@ -151,7 +151,7 @@ export default function Login() {
         <SolidButton
           type="submit"
           value={loading ? "Loading..." : "Log In"}
-          disabled={loading} // {!isValid || loading}
+          disabled={loading} // !isValid || loading
         />
       </Form>
       <Divider />

@@ -13,7 +13,7 @@ const Container = styled.div`
 const Content = styled.div`
   width: 100%;
   max-width: ${(props) => props.theme.wrapperWIdth};
-  margin-top: ${(props) => props.theme.margin};
+  margin-top: ${(props) => props.theme.marginSixTimes};
   padding: 0 40px;
 `;
 

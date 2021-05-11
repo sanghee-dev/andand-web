@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 interface IProps {
-  url: string;
+  url: string | undefined;
 }
 
 const Container = styled.div`
@@ -11,6 +11,9 @@ const Container = styled.div`
   height: 24px;
   border-radius: 50%;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const Image = styled.img`
   max-width: 100%;

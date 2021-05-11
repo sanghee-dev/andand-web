@@ -3,14 +3,13 @@ import { useReactiveVar } from "@apollo/client";
 import { isLoggedInVar } from "apollo";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faCompass } from "@fortawesome/free-regular-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import DarkModeBtn from "components/DarkModeBtn";
 import SolidButtonSmall from "components/button/SolidButtonSmall";
 import useUser from "hooks/useUser";
 import Avatar from "components/Avatar";
-import Title from "components/auth/Title";
+import HeaderTitle from "components/HeaderTitle";
 
 const Container = styled.div`
   width: 100%;
@@ -18,6 +17,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid ${(props) => props.theme.borderColor};
+  background-color: white;
 `;
 const Wrapper = styled.div`
   width: 100%;
@@ -52,7 +52,7 @@ export default function Header() {
     <Container>
       <Wrapper>
         <IconBox>
-          <Title fontSize={20} />
+          <HeaderTitle />
         </IconBox>
         {isLoggedIn ? (
           <>
