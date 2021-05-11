@@ -23,6 +23,7 @@ export interface seeFeed_seeFeed {
   likes: number;
   comments: number;
   isMine: boolean;
+  isLiked: boolean;
 }
 
 export interface seeFeed {
@@ -30,5 +31,5 @@ export interface seeFeed {
 }
 
 export interface seeFeedVariables {
-  page: number;
+  lastId: number;
 }

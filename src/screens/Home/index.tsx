@@ -10,11 +10,14 @@ import {
   faPaperPlane,
   faBookmark,
 } from "@fortawesome/free-regular-svg-icons";
-import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsisH,
+  faHeart as faSolidHeart,
+} from "@fortawesome/free-solid-svg-icons";
 
 const FEED_QUERY = gql`
-  query seeFeed($page: Int!) {
-    seeFeed(page: $page) {
+  query seeFeed($lastId: Int!) {
+    seeFeed(lastId: $lastId) {
       id
       createdAt
       user {
@@ -26,6 +29,7 @@ const FEED_QUERY = gql`
       likes
       comments
       isMine
+      isLiked
     }
   }
 `;
@@ -73,6 +77,7 @@ const Icons = styled.div`
   }
   svg {
     font-size: 20px;
+    transition: ${(props) => props.theme.transition};
   }
 `;
 const Likes = styled.h2`
@@ -84,16 +89,16 @@ const Comment = styled.h2`
   margin-bottom: ${(props) => props.theme.margin};
   & :first-child {
     font-weight: ${(props) => props.theme.fontHeavy};
+    margin-right: ${(props) => props.theme.margin};
   }
 `;
 
 export default function Home() {
   const { data } = useQuery<seeFeed, seeFeedVariables>(FEED_QUERY, {
     variables: {
-      page: 1,
+      lastId: 0,
     },
   });
-  console.log("data", data);
 
   return (
     <Container>
@@ -110,7 +115,10 @@ export default function Home() {
           <BottomBox>
             <Icons>
               <Box>
-                <FontAwesomeIcon icon={faHeart} />
+                <FontAwesomeIcon
+                  style={{ color: feed?.isLiked ? "tomato" : "inherit" }}
+                  icon={feed?.isLiked ? faSolidHeart : faHeart}
+                />
                 <FontAwesomeIcon icon={faComment} />
                 <FontAwesomeIcon icon={faPaperPlane} />
               </Box>
@@ -120,7 +128,8 @@ export default function Home() {
               {feed?.likes} {feed?.likes || 0 > 1 ? "likes" : "like"}
             </Likes>
             <Comment>
-              {feed?.user?.username} {feed?.comments}
+              <span>{feed?.user?.username}</span>
+              <span>{feed?.comments}</span>
             </Comment>
             <CreatedAt createdAt={feed?.createdAt || ""} />
           </BottomBox>
