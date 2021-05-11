@@ -10,7 +10,7 @@ import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import Divider from "components/auth/Divider";
 import IconButton from "components/button/IconButton";
-import SoildButton from "components/button/SoildButton";
+import SolidButton from "components/button/SolidButton";
 import InputBox from "components/auth/InputBox";
 import ErrorMessage from "components/auth/ErrorMessage";
 import TextButton from "components/button/TextButton";
@@ -148,11 +148,11 @@ export default function Login() {
             {isShown ? "Hide" : "Show"}
           </button>
         </InputBox>
-        <SoildButton
+        <SolidButton
           type="submit"
           value={loading ? "Loading..." : "Log In"}
           disabled={loading} // {!isValid || loading}
-        ></SoildButton>
+        />
       </Form>
       <Divider />
       <IconButton type="submit" style={{ color: "rgb(56,81,133)" }}>

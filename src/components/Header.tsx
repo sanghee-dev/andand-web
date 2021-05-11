@@ -1,9 +1,14 @@
 import styled from "styled-components";
-import DarkModeBtn from "components/DarkModeBtn";
+import { useReactiveVar } from "@apollo/client";
+import { isLoggedInVar } from "apollo";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faCompass, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+import DarkModeBtn from "components/DarkModeBtn";
+import SolidButtonSmall from "components/button/SolidButtonSmall";
+import useUser from "hooks/useUser";
 
 const Container = styled.div`
   width: 100%;
@@ -36,6 +41,9 @@ const Icon = styled.div`
 `;
 
 export default function Header() {
+  const isLoggedIn = useReactiveVar(isLoggedInVar);
+  const loggedInUser = useUser();
+
   return (
     <Container>
       <Wrapper>
@@ -44,18 +52,26 @@ export default function Header() {
             <FontAwesomeIcon icon={faInstagram} style={{ fontSize: 22 }} />
           </Icon>
         </IconBox>
-        <IconBox>
-          <Icon>
-            <FontAwesomeIcon icon={faHome} style={{ fontSize: 20 }} />
-          </Icon>
-          <Icon>
-            <FontAwesomeIcon icon={faCompass} style={{ fontSize: 20 }} />
-          </Icon>
-          <Icon>
-            <FontAwesomeIcon icon={faUser} style={{ fontSize: 20 }} />
-          </Icon>
-          <DarkModeBtn />
-        </IconBox>
+        {isLoggedIn ? (
+          <>
+            <IconBox>
+              <Icon>
+                <FontAwesomeIcon icon={faHome} style={{ fontSize: 20 }} />
+              </Icon>
+              <Icon>
+                <FontAwesomeIcon icon={faCompass} style={{ fontSize: 20 }} />
+              </Icon>
+              <Icon>
+                <FontAwesomeIcon icon={faUser} style={{ fontSize: 20 }} />
+              </Icon>
+              <DarkModeBtn />
+            </IconBox>
+          </>
+        ) : (
+          <Link to="/">
+            <SolidButtonSmall type="submit" value="Login" />
+          </Link>
+        )}
       </Wrapper>
     </Container>
   );

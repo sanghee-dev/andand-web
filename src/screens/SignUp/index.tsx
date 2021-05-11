@@ -13,7 +13,7 @@ import PageTitle from "components/PageTitle";
 import Title from "components/auth/Title";
 import Divider from "components/auth/Divider";
 import IconButton from "components/button/IconButton";
-import SoildButton from "components/button/SoildButton";
+import SolidButton from "components/button/SolidButton";
 import InputBox from "components/auth/InputBox";
 import ErrorMessage from "components/auth/ErrorMessage";
 import Paragraph from "components/auth/Paragraph";
@@ -215,7 +215,7 @@ export default function SignUp() {
             {isShown ? "Hide" : "Show"}
           </button>
         </InputBox>
-        <SoildButton
+        <SolidButton
           type="submit"
           value="Sign up"
           disabled={loading} // {!isValid || loading}
