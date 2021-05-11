@@ -36,6 +36,7 @@ const Feed = styled.div`
   border: ${(props) => props.theme.border};
   margin-bottom: ${(props) => props.theme.marginSixTimes};
   background-color: white;
+  border-radius: ${(props) => props.theme.borderRadius};
 `;
 const Username = styled.h2`
   font-weight: ${(props) => props.theme.fontHeavy};
@@ -50,6 +51,9 @@ const TopBox = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: ${(props) => props.theme.marginDouble};
+  svg {
+    font-size: 20px;
+  }
 `;
 const Image = styled.img`
   width: 100%;
@@ -59,22 +63,25 @@ const Image = styled.img`
 `;
 const BottomBox = styled.div`
   padding: ${(props) => props.theme.marginDouble};
-  & :not(:first-child) {
-    margin-bottom: ${(props) => props.theme.margin};
-  }
 `;
 const Icons = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: ${(props) => props.theme.margin};
   & :not(:first-child) {
     margin-left: ${(props) => props.theme.margin};
+  }
+  svg {
+    font-size: 20px;
   }
 `;
 const Likes = styled.h2`
   font-weight: ${(props) => props.theme.fontHeavy};
+  margin-bottom: ${(props) => props.theme.margin};
 `;
 const Comment = styled.h2`
   display: flex;
+  margin-bottom: ${(props) => props.theme.margin};
   & :first-child {
     font-weight: ${(props) => props.theme.fontHeavy};
   }
@@ -97,17 +104,17 @@ export default function Home() {
               <Avatar url={feed?.user?.avatar || ""} />
               <Username>{feed?.user?.username}</Username>
             </Box>
-            <FontAwesomeIcon icon={faEllipsisH} style={{ fontSize: 16 }} />
+            <FontAwesomeIcon icon={faEllipsisH} />
           </TopBox>
           <Image src={feed?.file} alt="Feed" />
           <BottomBox>
             <Icons>
               <Box>
-                <FontAwesomeIcon icon={faHeart} style={{ fontSize: 18 }} />
-                <FontAwesomeIcon icon={faComment} style={{ fontSize: 18 }} />
-                <FontAwesomeIcon icon={faPaperPlane} style={{ fontSize: 18 }} />
+                <FontAwesomeIcon icon={faHeart} />
+                <FontAwesomeIcon icon={faComment} />
+                <FontAwesomeIcon icon={faPaperPlane} />
               </Box>
-              <FontAwesomeIcon icon={faBookmark} style={{ fontSize: 18 }} />
+              <FontAwesomeIcon icon={faBookmark} />
             </Icons>
             <Likes>
               {feed?.likes} {feed?.likes || 0 > 1 ? "likes" : "like"}

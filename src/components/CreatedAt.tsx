@@ -4,8 +4,9 @@ interface IProps {
   createdAt: string | undefined;
 }
 
-const CreatedDate = styled.h3`
+const CreatedDate = styled.h4`
   text-transform: uppercase;
+  color: ${(props) => props.theme.fontGray};
 `;
 
 function CreatedAt({ createdAt = "" }: IProps) {

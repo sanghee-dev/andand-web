@@ -42,6 +42,9 @@ const Icon = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  svg {
+    font-size: 20px;
+  }
 `;
 
 export default function Header() {
@@ -58,10 +61,10 @@ export default function Header() {
           <>
             <IconBox>
               <Icon>
-                <FontAwesomeIcon icon={faHome} style={{ fontSize: 20 }} />
+                <FontAwesomeIcon icon={faHome} />
               </Icon>
               <Icon>
-                <FontAwesomeIcon icon={faCompass} style={{ fontSize: 20 }} />
+                <FontAwesomeIcon icon={faCompass} />
               </Icon>
               <Avatar url={data?.me?.avatar} />
               <DarkModeBtn />

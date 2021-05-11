@@ -14,6 +14,9 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  svg {
+    font-size: 20px;
+  }
 `;
 const Image = styled.img`
   max-width: 100%;
@@ -23,11 +26,7 @@ const Image = styled.img`
 function Avatar({ url = "" }: IProps) {
   return (
     <Container>
-      {url !== "" ? (
-        <Image src={url} />
-      ) : (
-        <FontAwesomeIcon icon={faUser} style={{ fontSize: 18 }} />
-      )}
+      {url !== "" ? <Image src={url} /> : <FontAwesomeIcon icon={faUser} />}
     </Container>
   );
 }

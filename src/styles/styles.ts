@@ -10,8 +10,10 @@ const sharedProps = {
   h1: "38px",
   h2: "14px",
   h3: "12px",
+  h4: "10px",
 
   fontHeavy: "600",
+  fontGray: "rgb(150,150,150)",
 
   margin: "6px",
   marginDouble: "12px",

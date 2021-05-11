@@ -54,4 +54,8 @@ export const GlobalStyles = createGlobalStyle`
     font-size: ${(props) => props.theme.h3};
     line-height: 1.2;
   }
+  h4 {
+    font-size: ${(props) => props.theme.h4};
+    line-height: 1.2;
+  }
 `;
