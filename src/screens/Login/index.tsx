@@ -19,9 +19,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookSquare } from "@fortawesome/free-brands-svg-icons";
 
 interface IStateType {
-  username?: string;
-  password?: string;
-  message?: string;
+  username: string;
+  password: string;
+  message: string;
 }
 
 type IProps = {
@@ -45,27 +45,26 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors }, // errors, isValid
+    formState: { errors, isValid },
     getValues,
     setError,
     clearErrors,
+    trigger,
   } = useForm<IProps>({
     mode: "onChange",
   });
   const { password } = getValues();
   const [isShown, setIsShown] = useState(false);
-  const onCompleted = (data: any) => {
+  const onCompleted = (data: login) => {
     const {
       login: { ok, error, token },
     } = data;
     if (!ok) {
       return setError("result", {
-        message: error,
+        message: error || undefined,
       });
     }
-    if (token) {
-      LogUserIn(token);
-    }
+    if (token) LogUserIn(token);
   };
   const [login, { loading }] = useMutation<login, loginVariables>(
     LOGIN_MUTATION,
@@ -99,6 +98,12 @@ export default function Login() {
           </label>
           <input
             {...register("username", {
+              validate: (): any => {
+                if (errors.result) {
+                  clearLoginError();
+                  trigger();
+                }
+              },
               required: "Username is required.",
               minLength: {
                 value: 5,
@@ -110,7 +115,6 @@ export default function Login() {
               },
             })}
             defaultValue={location?.state?.username}
-            onChange={clearLoginError}
             type="text"
             style={{ borderColor: errors?.username ? "red" : "inherit" }}
           />
@@ -121,6 +125,12 @@ export default function Login() {
           </label>
           <input
             {...register("password", {
+              validate: (): any => {
+                if (errors.result) {
+                  clearLoginError();
+                  trigger();
+                }
+              },
               required: "Password is required.",
               minLength: {
                 value: 5,
@@ -132,7 +142,6 @@ export default function Login() {
               },
             })}
             defaultValue={location?.state?.password}
-            onChange={clearLoginError}
             type={isShown ? "text" : "password"}
             style={{ borderColor: errors?.password ? "red" : "inherit" }}
           />
@@ -151,7 +160,7 @@ export default function Login() {
         <SolidButton
           type="submit"
           value={loading ? "Loading..." : "Log In"}
-          disabled={loading} // !isValid || loading
+          disabled={!isValid || loading}
         />
       </Form>
       <Divider />

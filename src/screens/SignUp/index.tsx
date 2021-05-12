@@ -55,10 +55,11 @@ export default function SignUp() {
   const {
     register,
     handleSubmit,
-    formState: { errors }, // isValid
+    formState: { errors, isValid },
     getValues,
     setError,
     clearErrors,
+    trigger,
   } = useForm<IProps>({
     mode: "onChange",
     reValidateMode: "onSubmit",
@@ -131,9 +132,14 @@ export default function SignUp() {
           </label>
           <input
             {...register("email", {
+              validate: (): any => {
+                if (errors.result) {
+                  clearLoginError();
+                  trigger();
+                }
+              },
               required: "Email is required.",
             })}
-            onChange={clearLoginError}
             type="text"
             style={{ borderColor: errors?.email ? "red" : "inherit" }}
           />
@@ -144,6 +150,12 @@ export default function SignUp() {
           </label>
           <input
             {...register("username", {
+              validate: (): any => {
+                if (errors.result) {
+                  clearLoginError();
+                  trigger();
+                }
+              },
               required: "Username is required.",
               minLength: {
                 value: 5,
@@ -154,7 +166,6 @@ export default function SignUp() {
                 message: "Username should be less than 20 chars.",
               },
             })}
-            onChange={clearLoginError}
             type="text"
             style={{ borderColor: errors?.username ? "red" : "inherit" }}
           />
@@ -165,9 +176,14 @@ export default function SignUp() {
           </label>
           <input
             {...register("firstName", {
+              validate: (): any => {
+                if (errors.result) {
+                  clearLoginError();
+                  trigger();
+                }
+              },
               required: "FirstName is required.",
             })}
-            onChange={clearLoginError}
             type="text"
             style={{ borderColor: errors?.firstName ? "red" : "inherit" }}
           />
@@ -177,8 +193,14 @@ export default function SignUp() {
             {errors?.lastName ? errors?.lastName?.message : "LastName"}
           </label>
           <input
-            {...register("lastName")}
-            onChange={clearLoginError}
+            {...register("lastName", {
+              validate: (): any => {
+                if (errors.result) {
+                  clearLoginError();
+                  trigger();
+                }
+              },
+            })}
             type="text"
             style={{ borderColor: errors?.lastName ? "red" : "inherit" }}
           />
@@ -189,6 +211,12 @@ export default function SignUp() {
           </label>
           <input
             {...register("password", {
+              validate: (): any => {
+                if (errors.result) {
+                  clearLoginError();
+                  trigger();
+                }
+              },
               required: "Password is required.",
               minLength: {
                 value: 5,
@@ -199,7 +227,6 @@ export default function SignUp() {
                 message: "Password should be less than 20 chars.",
               },
             })}
-            onChange={clearLoginError}
             type={isShown ? "text" : "password"}
             style={{ borderColor: errors?.password ? "red" : "inherit" }}
           />
@@ -218,7 +245,7 @@ export default function SignUp() {
         <SolidButton
           type="submit"
           value="Sign up"
-          disabled={loading} // {!isValid || loading}
+          disabled={!isValid || loading}
         />
       </Form>
       <ErrorMessage message={errors?.result?.message || ""} />

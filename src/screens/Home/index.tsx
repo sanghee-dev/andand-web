@@ -1,19 +1,7 @@
 import styled from "styled-components";
 import { gql, useQuery } from "@apollo/client";
 import { seeFeed, seeFeedVariables } from "__generated__/seeFeed";
-import Avatar from "components/Avatar";
-import CreatedAt from "components/CreatedAt";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faComment,
-  faHeart,
-  faPaperPlane,
-  faBookmark,
-} from "@fortawesome/free-regular-svg-icons";
-import {
-  faEllipsisH,
-  faHeart as faSolidHeart,
-} from "@fortawesome/free-solid-svg-icons";
+import Feed from "components/feed/Feed";
 
 const FEED_QUERY = gql`
   query seeFeed($lastId: Int!) {
@@ -35,63 +23,6 @@ const FEED_QUERY = gql`
 `;
 
 const Container = styled.div``;
-const Feed = styled.div`
-  max-width: 600px;
-  border: ${(props) => props.theme.border};
-  margin-bottom: ${(props) => props.theme.marginSixTimes};
-  background-color: white;
-  border-radius: ${(props) => props.theme.borderRadius};
-`;
-const Username = styled.h2`
-  font-weight: ${(props) => props.theme.fontHeavy};
-  margin-left: ${(props) => props.theme.marginDouble};
-`;
-const Box = styled.div`
-  display: flex;
-  align-items: center;
-`;
-const TopBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: ${(props) => props.theme.marginDouble};
-  svg {
-    font-size: 20px;
-  }
-`;
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  background-size: contain;
-  background-position: center;
-`;
-const BottomBox = styled.div`
-  padding: ${(props) => props.theme.marginDouble};
-`;
-const Icons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: ${(props) => props.theme.margin};
-  & :not(:first-child) {
-    margin-left: ${(props) => props.theme.margin};
-  }
-  svg {
-    font-size: 20px;
-    transition: ${(props) => props.theme.transition};
-  }
-`;
-const Likes = styled.h2`
-  font-weight: ${(props) => props.theme.fontHeavy};
-  margin-bottom: ${(props) => props.theme.margin};
-`;
-const Comment = styled.h2`
-  display: flex;
-  margin-bottom: ${(props) => props.theme.margin};
-  & :first-child {
-    font-weight: ${(props) => props.theme.fontHeavy};
-    margin-right: ${(props) => props.theme.margin};
-  }
-`;
 
 export default function Home() {
   const { data } = useQuery<seeFeed, seeFeedVariables>(FEED_QUERY, {
@@ -103,37 +34,20 @@ export default function Home() {
   return (
     <Container>
       {data?.seeFeed?.map((feed) => (
-        <Feed key={feed?.id}>
-          <TopBox>
-            <Box>
-              <Avatar url={feed?.user?.avatar || ""} />
-              <Username>{feed?.user?.username}</Username>
-            </Box>
-            <FontAwesomeIcon icon={faEllipsisH} />
-          </TopBox>
-          <Image src={feed?.file} alt="Feed" />
-          <BottomBox>
-            <Icons>
-              <Box>
-                <FontAwesomeIcon
-                  style={{ color: feed?.isLiked ? "tomato" : "inherit" }}
-                  icon={feed?.isLiked ? faSolidHeart : faHeart}
-                />
-                <FontAwesomeIcon icon={faComment} />
-                <FontAwesomeIcon icon={faPaperPlane} />
-              </Box>
-              <FontAwesomeIcon icon={faBookmark} />
-            </Icons>
-            <Likes>
-              {feed?.likes} {feed?.likes || 0 > 1 ? "likes" : "like"}
-            </Likes>
-            <Comment>
-              <span>{feed?.user?.username}</span>
-              <span>{feed?.comments}</span>
-            </Comment>
-            <CreatedAt createdAt={feed?.createdAt || ""} />
-          </BottomBox>
-        </Feed>
+        <Feed
+          key={feed?.id || 0}
+          // id={feed?.id || 0}
+          // createdAt={feed?.createdAt || ""}
+          // username={feed?.user?.username || ""}
+          // avatar={feed?.user?.avatar || ""}
+          // file={feed?.file || ""}
+          // caption={feed?.caption || ""}
+          // likes={feed?.likes || 0}
+          // comments={feed?.comments || 0}
+          // isMine={feed?.isMine || false}
+          // isLiked={feed?.isLiked || false}
+          {...feed}
+        />
       ))}
     </Container>
   );

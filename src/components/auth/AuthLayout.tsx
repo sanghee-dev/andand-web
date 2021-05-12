@@ -49,9 +49,9 @@ function AuthLayout({ children }: IProps) {
       <Wrapper>{children}</Wrapper>
 
       <AccountBox>
-        <h2>{isLogin ? "Have an account?" : "Have an account?"}</h2>
+        <h2>{isLogin ? "Have an account?" : "Don't have an account?"}</h2>
         <Link to={isLogin ? routes.home : routes.signUp}>
-          <h2>{isLogin ? "Log in" : "Log in"}</h2>
+          <h2>{isLogin ? "Log in" : "Sign up"}</h2>
         </Link>
       </AccountBox>
 
